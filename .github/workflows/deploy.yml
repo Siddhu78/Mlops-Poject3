@@ -36,8 +36,8 @@ jobs:
 
             - name: Building and Pushing Image
               run: |
-                docker build -t $IMAGE: $GITHUB_SHA .
-                docker push $IMAGE: $GITHUB_SHA
+                docker build -t $IMAGE:$GITHUB_SHA .
+                docker push $IMAGE:$GITHUB_SHA
                 
             - name: GKE Configuration
               run: |
@@ -45,8 +45,8 @@ jobs:
 
             - name: Deploying to kubernetes
               run: |
-               kubect1 apply -f kubernetes-deployment.yaml
-               kubect1 set image deployment/$DEPLOYMENT_NAME $DEPLOYMENT_NAME=$IMAGE:$GITHUB_SHA
+                 kubectl apply -f kubernetes-deployment.yaml
+                 kubectl set image deployment/$DEPLOYMENT_NAME $DEPLOYMENT_NAME=$IMAGE:$GITHUB_SHA
 
 
 
